@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { confirmEmail, login, registro, recuperarPassword, comprobarTokenPasword, nuevoPassword, perfilUsuario } from '../controllers/veterinario_controller.js'
+import { confirmEmail, login, registro, recuperarPassword, comprobarTokenPasword, nuevoPassword, perfilUsuario, actualizarPerfil, actualizarPassword} from '../controllers/veterinario_controller.js'
 import verificarAutenticacion from '../middlewares/autenticacion.js'
 const router = Router()
  
@@ -21,4 +21,9 @@ router.post('/nuevo-password/:token' , nuevoPassword)
 // rutas privadas
 
 router.get('/perfilvet',verificarAutenticacion, perfilUsuario)
+
+router.put('/veterinario/actualizarpassword', verificarAutenticacion, actualizarPassword)
+
+router.put('/veterinario/:id', verificarAutenticacion, actualizarPerfil)
+
 export default router
