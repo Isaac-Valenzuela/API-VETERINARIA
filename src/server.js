@@ -3,6 +3,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors';
 import routerVeterinarios from './routers/veterinario_routes.js';
+import routerPacientes from './routers/paciente_routes.js'
+
 
 
 
@@ -27,6 +29,8 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/api', routerVeterinarios)
+
+app.use('/api', routerPacientes)
 
 // rutas no encontradas
 app.use((req,res)=>res.status(404).send("Endopoint o encontrado - 404"))

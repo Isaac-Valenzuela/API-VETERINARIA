@@ -11,9 +11,12 @@ const verificarAutenticacion = async (req, res, next) => {
     const { authorization } = req.headers
     try {
         const { id, rol } = jwt.verify(authorization.split(' ')[1], process.env.JWT_SECRET)
-        if (rol === "veterinario") {
-            
+        if (rol==="veterinario"){
             req.veterinarioBDD = await Veterinario.findById(id).lean().select("-password")
+            next()
+        }
+        else{
+            req.pacienteBDD = await Paciente.findById(id).lean().select("-password")
             next()
         }
     } catch (error) {
